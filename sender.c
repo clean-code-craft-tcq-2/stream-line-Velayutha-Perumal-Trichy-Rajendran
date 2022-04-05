@@ -25,7 +25,7 @@ int main ()
 		sensor_data.temperature = batteryTemperature[readIndex];
 		sensor_data.chargingCurrent = batteryChargingCurrent[readIndex];
 		postProcessingSensorData (sensor_data, dataStream);
-		streamDataToConsole(jsonData);
+		streamDataToConsole(dataStream);
 	}
 	
 	return 0;

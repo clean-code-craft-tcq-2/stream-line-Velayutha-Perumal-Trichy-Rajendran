@@ -4,7 +4,7 @@ typedef struct __BMS__
 {
 	float temperature;
 	float chargingCurrent;
-}BMS batteryParams;
+}BMS;
 
 void convertSensorDataToJson (BMS sensor_data, char *jsonData);
 void streamDataToConsole (char *dataStream);
