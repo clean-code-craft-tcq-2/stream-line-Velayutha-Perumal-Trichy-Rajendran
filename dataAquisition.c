@@ -3,7 +3,7 @@
 
 void convertSensorDataToJson (BMS sensor_data, char *jsonData)
 {
-	sprintf (jsonData, "{\"Temperature\": %f, \"ChargingCurrent\": %f}", sensor_data.temperature, sensor_data.chargingCurrent);
+	sprintf (jsonData, "{\"Temperature\": %.1f, \"ChargingCurrent\": %.1f}", sensor_data.temperature, sensor_data.chargingCurrent);
 	return;
 }
 

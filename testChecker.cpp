@@ -17,6 +17,7 @@ SCENARIO("Validate JSON Data format")
         WHEN("postProcessingSensorData() is called with given sensor data")
         {
             postProcessingSensorData (sensor_data, actualData);
+			printf ("actual is %s\nexpected is %s\n", actualData, expectedData);
             THEN("raw sensor data will be converted to Json format")
             {
                 REQUIRE(strcmp(actualData, expectedData) == 0);
