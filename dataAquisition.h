@@ -1,5 +1,5 @@
 #pragma once
-
+#include <stdio.h>
 typedef struct __BMS__
 {
 	float temperature;
@@ -7,5 +7,5 @@ typedef struct __BMS__
 }BMS;
 
 void convertSensorDataToJson (BMS sensor_data, char *jsonData);
-void streamDataToConsole (char *dataStream);
+void streamData (char *dataStream, FILE *endPoint);
 void postProcessingSensorData (BMS sensor_data, char *jsonData);

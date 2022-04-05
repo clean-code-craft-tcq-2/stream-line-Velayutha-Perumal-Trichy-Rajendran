@@ -1,7 +1,6 @@
 #include "dataAquisition.h"
 #define DATA_SIZE	50
 
-
 float batteryTemperature [DATA_SIZE] = {23.0,42.0,50.0,48.0,39.0,38.0,49.0,1.0,40.0,5.0,
 								 45.0,44.0,41.0,37.0,35.0,33.0,31.0,7.0,32.0,2.0,
 								 29.0,27.0,25.0,22.0,21.0,20.0,12.0,8.0,13.0,14.0,
@@ -19,13 +18,14 @@ int main ()
 {
 	char dataStream[64];
 	BMS sensor_data;
+	FILE *endPoint = stdout;
 	
 	for (int readIndex = 0; readIndex < DATA_SIZE; readIndex ++)
 	{
 		sensor_data.temperature = batteryTemperature[readIndex];
 		sensor_data.chargingCurrent = batteryChargingCurrent[readIndex];
 		postProcessingSensorData (sensor_data, dataStream);
-		streamDataToConsole(dataStream);
+		streamData(dataStream, endPoint);
 	}
 	
 	return 0;

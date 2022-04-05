@@ -1,5 +1,4 @@
 #include "dataAquisition.h"
-#include <stdio.h>
 
 void convertSensorDataToJson (BMS sensor_data, char *jsonData)
 {
@@ -7,9 +6,9 @@ void convertSensorDataToJson (BMS sensor_data, char *jsonData)
 	return;
 }
 
-void streamDataToConsole (char *dataStream)
+void streamData (char *dataStream, FILE *endPoint)
 {
-	printf ("%s\n", dataStream);
+	fprintf (endPoint,"%s\n", dataStream);
 	return;
 }
 
