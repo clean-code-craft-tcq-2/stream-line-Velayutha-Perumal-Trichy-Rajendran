@@ -15,14 +15,20 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y gcovr
 
-    - name: build
+    - name: build sender
       #run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage testChecker.cpp dataAquisition.c -o testchecker
       run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage sender.c dataAquisition.c -o sender 
       
-    - name: run
+    - name: run sender
       #run: ./testchecker
       run: ./sender
-
+    
+    - name: build test
+      run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage testChecker.cpp dataAquisition.c -o testchecker
+      
+    - name: run test
+      run: ./testchecker
+      
     - name: collect coverage
       run: gcovr --gcov-exclude=".*test.*" -r . --html --html-details -o coverage.html --print-summary
 
