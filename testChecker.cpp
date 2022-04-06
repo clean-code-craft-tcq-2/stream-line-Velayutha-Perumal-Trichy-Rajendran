@@ -30,15 +30,18 @@ SCENARIO("Validate data stream in newline")
 {
     GIVEN("sensor data in json format")
     {
-		FILE *endPoint = fopen("output.txt", "w+");
+		FILE *endPoint = fopen("./output.txt", "w");
 		char *sensorData = "{\"Temperature\": 23.7, \"ChargingCurrent\": 5.6}";
 		char outputBuf[64];
 		char *expectedData = "{\"Temperature\": 23.7, \"ChargingCurrent\": 5.6}\n";
         WHEN("streamData() is called with given sensor data")
         {
             streamData (sensorData, endPoint);
+			fclose(endPoint);
+			endPoint = fopen("./output.txt", "r");
 			fgets(outputBuf, strlen(sensorData)+1, endPoint);
 			fclose(endPoint);
+			
 			printf ("%lu:%lu\n", strlen(sensorData), strlen(outputBuf));
             THEN("output sensor data will be generated with new line")
             {
