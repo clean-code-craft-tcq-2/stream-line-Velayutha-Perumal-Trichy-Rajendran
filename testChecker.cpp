@@ -36,11 +36,10 @@ SCENARIO("Validate data stream in newline")
 		char *expectedData = "{\"Temperature\": 23.7, \"ChargingCurrent\": 5.6}\n";
         WHEN("streamData() is called with given sensor data")
         {
-            streamData (sensor_data, endPoint);
+            streamData (sensorData, endPoint);
 			fgets(outputBuf, strlen(sensorData)+1, endPoint);
 			fclose(endPoint);
-			printf ("actual is %s\nexpected is %s\n", actualData, expectedData);
-            THEN("raw sensor data will be converted to Json format")
+            THEN("output sensor data will be generated with new line")
             {
                 REQUIRE(strcmp(outputBuf, expectedData) == 0);
             }
