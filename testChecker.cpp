@@ -25,3 +25,25 @@ SCENARIO("Validate JSON Data format")
         }
     }
 }
+
+SCENARIO("Validate data stream in newline")
+{
+    GIVEN("sensor data in json format")
+    {
+		FILE *endPoint = fopen("output.txt", "w+");
+		char *sensorData = "{\"Temperature\": 23.7, \"ChargingCurrent\": 5.6}";
+		char outputBuf[64];
+		char *expectedData = "{\"Temperature\": 23.7, \"ChargingCurrent\": 5.6}\n";
+        WHEN("streamData() is called with given sensor data")
+        {
+            streamData (sensor_data, endPoint);
+			fgets(outputBuf, strlen(sensorData)+1, endPoint);
+			fclose(fp);
+			printf ("actual is %s\nexpected is %s\n", actualData, expectedData);
+            THEN("raw sensor data will be converted to Json format")
+            {
+                REQUIRE(strcmp(outputBuf, expectedData) == 0);
+            }
+        }
+    }
+}
