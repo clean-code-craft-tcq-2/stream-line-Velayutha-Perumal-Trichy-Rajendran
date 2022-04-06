@@ -39,6 +39,7 @@ SCENARIO("Validate data stream in newline")
             streamData (sensorData, endPoint);
 			fgets(outputBuf, strlen(sensorData)+1, endPoint);
 			fclose(endPoint);
+			printf ("%lu:%lu\n", strlen(sensorData), strlen(outputBuf));
             THEN("output sensor data will be generated with new line")
             {
                 REQUIRE(strcmp(outputBuf, expectedData) == 0);
