@@ -38,7 +38,7 @@ SCENARIO("Validate data stream in newline")
         {
             streamData (sensor_data, endPoint);
 			fgets(outputBuf, strlen(sensorData)+1, endPoint);
-			fclose(fp);
+			fclose(endPoint);
 			printf ("actual is %s\nexpected is %s\n", actualData, expectedData);
             THEN("raw sensor data will be converted to Json format")
             {
