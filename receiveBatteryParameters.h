@@ -7,6 +7,8 @@
 #include <numeric>
 #include <string>
 #include <iomanip>
+#include <math.h>
+#include <fstream>
 
 typedef struct  {
     std::vector<float> chargingCurrent;
@@ -26,4 +28,4 @@ float calculateMovingAverage(std::vector<float>);
 std::string convertFloatToString(float ,int);
 std::string formatOutput(float, float, float, float, float, float);
 void printToConsole(std::string);
-void receiveAndProcessSensorData(inputFunctionPtr, outputFunctionPtr);
+bool receiveAndProcessSensorData(inputFunctionPtr, outputFunctionPtr);
