@@ -27,6 +27,18 @@ jobs:
       
     - name: run test
       run: ./testchecker
+
+    - name: build receiver
+      run: g++ -Wall -Wextra -fprofile-arcs receiver.cpp receiveBatteryParameters.cpp -o receiver 
+      
+    - name: run receiver
+      run: ./receiver
+    
+    - name: build test
+      run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage testReceiver.cpp receiveBatteryParameters.cpp -o testReceiver
+      
+    - name: run test
+      run: ./testReceiver
       
     - name: collect coverage
       run: gcovr --gcov-exclude=".*test.*" -r . --html --html-details -o coverage.html --print-summary
