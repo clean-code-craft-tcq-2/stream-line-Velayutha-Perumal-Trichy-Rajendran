@@ -32,7 +32,7 @@ jobs:
       run: g++ -Wall -Wextra -fprofile-arcs receiver.cpp receiveBatteryParameters.cpp -o receiver 
       
     - name: run receiver
-      run: ./receiver
+      run: ./sender | ./receiver
     
     - name: build test
       run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage testReceiver.cpp receiveBatteryParameters.cpp -o testReceiver
