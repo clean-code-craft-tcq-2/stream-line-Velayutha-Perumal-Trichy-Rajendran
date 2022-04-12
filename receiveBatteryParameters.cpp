@@ -107,9 +107,10 @@ bool receiveAndProcessSensorData(inputFunctionPtr inputFPtr, outputFunctionPtr o
     float minimumChargingCurrent = findMinumumValue(batteryParameters.chargingCurrent);
     float maximummChargingCurrent = findMaximumValue(batteryParameters.chargingCurrent);
     float averageChargingCurrent = calculateMovingAverage(batteryParameters.chargingCurrent);
-    if (isnan(minimumTemperature) || isnan(minimumChargingCurrent) || 
+    bool isInvalidData = (isnan(minimumTemperature) || isnan(minimumChargingCurrent) || 
         isnan(maximumTemperature) || isnan(maximummChargingCurrent) ||
-        isnan(averageTemperature) || isnan(averageChargingCurrent))
+        isnan(averageTemperature) || isnan(averageChargingCurrent));
+    if (isInvalidData)
         return false;
     outputString = formatOutput(
         minimumTemperature, maximumTemperature, minimumChargingCurrent,
