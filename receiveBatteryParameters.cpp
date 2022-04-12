@@ -93,6 +93,8 @@ void printToConsole(std::string stringToPrint) {
     std::cout<<stringToPrint<<std::endl;
 }
 
+bool isNan (float d) { return std::isnan(d); }
+
 bool receiveAndProcessSensorData(inputFunctionPtr inputFPtr, outputFunctionPtr outputFPtr) {
     std::string outputString;
     std::vector<std::string> inputSensorDataStringVector;
@@ -107,11 +109,13 @@ bool receiveAndProcessSensorData(inputFunctionPtr inputFPtr, outputFunctionPtr o
     float minimumChargingCurrent = findMinumumValue(batteryParameters.chargingCurrent);
     float maximummChargingCurrent = findMaximumValue(batteryParameters.chargingCurrent);
     float averageChargingCurrent = calculateMovingAverage(batteryParameters.chargingCurrent);
-    bool isInvalidData = (isnan(minimumTemperature) || isnan(minimumChargingCurrent) || 
-        isnan(maximumTemperature) || isnan(maximummChargingCurrent) ||
-        isnan(averageTemperature) || isnan(averageChargingCurrent));
-    if (isInvalidData)
+
+    std::vector<float> sensorDataStatics = {minimumTemperature, maximumTemperature, averageTemperature,
+        minimumChargingCurrent, maximummChargingCurrent, averageChargingCurrent};
+    bool countOfInvalidData = std::count_if(sensorDataStatics.begin(), sensorDataStatics.end(), isNan);
+    if (countOfInvalidData > 0)
         return false;
+
     outputString = formatOutput(
         minimumTemperature, maximumTemperature, minimumChargingCurrent,
         maximummChargingCurrent, averageTemperature, averageChargingCurrent);
